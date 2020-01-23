@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Autocomplete } from '@material-ui/lab'
+import {
+  TextFiield,
+  Card,
+  CardActions,
+  CardContent
+}from '@material-ui/core'
 
-function App() {
+const ContentView = props => {
+  const {id, name} = props.item
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <div>
+      <label>{id}</label>
+      <label>{name}</label>
+    </div> 
+  )
 }
 
-export default App;
+class App extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {items:[
+      {id:'n19001', name:'ishigaki'}
+                ],
+                  item : {id:'undef', name:'undef'}
+}
+}
+}
+render () {
+  return (
+    <Card>
+      <CardActions>
+        <ActionView items = {this.state.items} />
+      </CardActions>
+      <CardContent>
+        <ContentView item = {this.state.item} />
+      </CardContent>
+    </Card>
+  )
+}          
+
+export default App
